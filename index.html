@@ -27,7 +27,8 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
+            padding: 2rem 0;
             position: relative;
             text-rendering: optimizeLegibility;
             letter-spacing: 0.02em;
@@ -66,8 +67,8 @@
             backdrop-filter: blur(18px) saturate(140%);
             box-shadow: 0 30px 80px rgba(7, 13, 28, 0.7), 0 0 40px rgba(118, 168, 255, 0.2);
             text-align: center;
-            max-width: 520px;
-            width: min(88vw, 580px);
+            max-width: 680px;
+            width: min(90vw, 680px);
         }
         main.hero::before {
             content: "tiritara.dev";
@@ -172,9 +173,90 @@
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 0 22px rgba(118, 168, 255, 0.55);
         }
+        .featured {
+            margin-top: 2.4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(118, 168, 255, 0.2);
+            text-align: left;
+        }
+        .featured h2 {
+            margin: 0 0 1.2rem;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+        }
+        .featured-card {
+            display: grid;
+            grid-template-columns: 160px minmax(0, 1fr);
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .featured-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 4 / 3;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 12px;
+            transition: transform 0.2s ease;
+        }
+        .featured-brand:hover {
+            transform: translateY(-3px);
+        }
+        .featured-brand img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .featured-title {
+            margin: 0 0 0.6rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+        .featured .featured-title a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .featured p {
+            margin: 0;
+            color: #b8c3d9;
+            font-size: 0.85rem;
+            line-height: 1.9;
+        }
+        .featured a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 0.25em;
+        }
+        .featured a:hover {
+            color: #fff;
+        }
+        .featured a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+        .featured .featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.9rem;
+            padding: 0.3rem 0;
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
         footer {
-            position: absolute;
-            bottom: 18px;
+            position: relative;
+            margin-top: 1.5rem;
             color: rgba(200, 207, 255, 0.6);
             font-size: 0.85rem;
             letter-spacing: 0.24em;
@@ -190,7 +272,19 @@
         }
         @media (max-width: 640px) {
             main.hero {
-                padding: 2.6rem 1.6rem 3rem;
+                padding: 2.6rem 1.4rem 2rem;
+            }
+            .featured-card {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .featured-brand {
+                width: 100%;
+                aspect-ratio: auto;
+                padding: 1.2rem;
+            }
+            .featured-brand img {
+                width: min(100%, 200px);
             }
             .data-strip {
                 width: 100%;
@@ -212,7 +306,19 @@
             <h1>tiritara.dev</h1>
             <p class="tagline"><span>Code smart.</span> Live smiler.</p>
         </header>
-
+        <section class="featured" lang="ja" aria-labelledby="featured-heading">
+            <h2 id="featured-heading">ご紹介いただきました</h2>
+            <div class="featured-card">
+                <a class="featured-brand" href="https://otokuboo.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/otokuboo-logo.png" alt="とくぶーのお得日記" width="980" height="460" loading="lazy">
+                </a>
+                <div class="featured-content">
+                    <h3 class="featured-title"><a href="https://otokuboo.com/" target="_blank" rel="noopener noreferrer">とくぶーのお得日記</a></h3>
+                    <p>格安SIM・節約のブログを運営する<br>とくぶーさんに、当サイトをご紹介いただきました。</p>
+                    <a class="featured-link" href="https://otokuboo.com/partner/" target="_blank" rel="noopener noreferrer">紹介ページを見る <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
