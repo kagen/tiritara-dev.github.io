@@ -1,0 +1,200 @@
+{
+  "apps": [
+    {
+      "slug": "dazen",
+      "name": "DaZen",
+      "tagline": "バイノーラルビートと自然のノイズで、静かに瞑想",
+      "genre": "life",
+      "category": "健康・瞑想",
+      "play": "com.tiritara.dazen",
+      "ios": "6814318914"
+    },
+    {
+      "slug": "train-alarm",
+      "name": "電車GPS目覚まし",
+      "tagline": "降車駅に近づくと鳴る、乗り過ごし防止アラーム",
+      "genre": "life",
+      "category": "旅行・交通",
+      "play": "com.tiritara.traindetector",
+      "ios": "6818022245"
+    },
+    {
+      "slug": "kattalyst",
+      "name": "Kattalyst",
+      "tagline": "いつものまとめ買いを、直感操作の買い物リストで",
+      "genre": "life",
+      "category": "ショッピング",
+      "play": "com.tiritara.kattalyst",
+      "ios": "6815892891"
+    },
+    {
+      "slug": "rosanauts",
+      "name": "RosaNauts",
+      "tagline": "バラ・ガーデニングの育成記録とスケジュール管理",
+      "genre": "life",
+      "category": "ライフスタイル",
+      "play": "com.tiritara.rosanauts",
+      "ios": "6807705043"
+    },
+    {
+      "slug": "rokuyou-calendar",
+      "name": "和風六曜暦カレンダー",
+      "tagline": "六曜・旧暦・祝日・天気がひと目でわかる和風カレンダー",
+      "genre": "life",
+      "category": "ライフスタイル",
+      "play": "com.koyomi.rokuyoucalendar",
+      "ios": "6800308302"
+    },
+    {
+      "slug": "soundbtn",
+      "name": "音ボタン SoundBtn",
+      "tagline": "降車ボタン・風鈴・蝉・タイマーをワンタップで",
+      "genre": "life",
+      "category": "エンタメ",
+      "play": "com.tiritara.soundbtn",
+      "ios": "6807745902"
+    },
+    {
+      "slug": "bear-alert",
+      "name": "Bear Alert",
+      "tagline": "熊よけの警報音・フラッシュ・緊急撮影をすぐに",
+      "genre": "life",
+      "category": "ツール",
+      "play": "com.tiritara.bearalart",
+      "ios": "6808528012"
+    },
+    {
+      "slug": "lenticular",
+      "name": "Lenticular",
+      "tagline": "傾けると絵が変わる、懐かしいレンチキュラーをスマホで",
+      "genre": "life",
+      "category": "エンタメ",
+      "ios": "6816585891"
+    },
+    {
+      "slug": "liferec",
+      "name": "liferec",
+      "tagline": "ホーム画面からワンタップで、毎日の出来事を記録",
+      "genre": "life",
+      "category": "仕事効率化",
+      "play": "com.tiritara.liferec"
+    },
+    {
+      "slug": "minnanoichiji",
+      "name": "みんなの一字",
+      "tagline": "今年を表す漢字一文字を、手書きで投稿",
+      "genre": "life",
+      "category": "ソーシャル",
+      "play": "com.tiritara.minnanoichiji"
+    },
+    {
+      "slug": "tenkeirin",
+      "name": "転経輪",
+      "tagline": "画面の中で経が回り続ける、デジタル時代の転経輪",
+      "genre": "life",
+      "category": "ライフスタイル",
+      "play": "com.tiritara.tenkeirin"
+    },
+    {
+      "slug": "lazerfloor",
+      "name": "Lazerfloor",
+      "tagline": "走って跳んでレーザーをかわす、ネオンのアーケード",
+      "genre": "game",
+      "category": "アーケード",
+      "play": "com.tiritara.lazerfloor",
+      "ios": "6813108700"
+    },
+    {
+      "slug": "square-drawing",
+      "name": "正方形ゲーム",
+      "tagline": "指でぴったりの正方形を描く、30秒パズル",
+      "genre": "game",
+      "category": "カジュアル",
+      "play": "com.tiritara.squaredrawinggame"
+    },
+    {
+      "slug": "flightchess",
+      "name": "飛行棋 空中大激闘",
+      "tagline": "シンプルなルールに奥深い戦略。CPUともみんなとも",
+      "genre": "game",
+      "category": "ボードゲーム",
+      "play": "com.tiritara.flightchess"
+    },
+    {
+      "slug": "runfast",
+      "name": "Run Fast 争上游",
+      "tagline": "上海版大富豪。3人オンライン対戦とCPU戦",
+      "genre": "game",
+      "category": "カードゲーム",
+      "play": "com.tiritara.runfast"
+    },
+    {
+      "slug": "24-points",
+      "name": "24ポイント",
+      "tagline": "4枚のカードと四則演算で「24」を作る脳トレ",
+      "genre": "game",
+      "category": "パズル",
+      "play": "com.tiritara.a24p"
+    },
+    {
+      "slug": "chinese-chess",
+      "name": "AI中国象棋",
+      "tagline": "AIと対局できる、シンプルな中国象棋",
+      "genre": "game",
+      "category": "ボードゲーム",
+      "play": "com.tiritara.chinesechess"
+    }
+  ],
+  "web": [
+    {
+      "slug": "emakake",
+      "name": "絵馬掛け",
+      "tagline": "ことしの抱負を、オンラインの絵馬に",
+      "url": "https://emakake.web.app/",
+      "image": "assets/web/emakake/ogp.png",
+      "stack": ["Firebase Hosting", "Firestore", "Cloud Functions", "App Check"],
+      "summary": "ことしの抱負や目標を絵馬に書いて掛け、みんなで「応援してます」を届け合うWebサービスです。登録不要・無料で使えます。",
+      "features": [
+        ["書いて、掛ける", "手書きや文字で抱負を書き、干支の絵柄の絵馬を選んでオンラインの絵馬掛けに掛けられます。"],
+        ["みんなで応援", "ほかの人の絵馬に「応援してます」を届けられます。応援の数はサーバー側で集計しています。"],
+        ["抱負の例文集", "何を書くか迷ったら例文集から選んで、そのまま書く画面に持っていけます。"],
+        ["安心して使える工夫", "NGワードや連絡先のチェック、通報による非表示、App Check による不正利用の防止を組み込んでいます。"],
+        ["シェア画像を自動生成", "書いた絵馬はシェア用の画像になり、SNSで共有したときにきれいに表示されます。"]
+      ]
+    },
+    {
+      "slug": "qr-kintai",
+      "name": "QR勤怠",
+      "tagline": "QRコードをかざすだけの勤怠打刻システム",
+      "stack": ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "NextAuth"],
+      "summary": "社員ごとのQRコードを打刻端末のカメラにかざすだけで、出勤・退勤を記録できる勤怠管理Webアプリです。専用のタイムレコーダーを用意しなくても、タブレットやPCのカメラがそのまま打刻機になります。",
+      "note": "社内向けに導入するセルフホスト型のシステムです。導入のご相談はお問い合わせください。",
+      "features": [
+        ["かざすだけで打刻", "打刻画面はログイン不要。カメラでQRを読み取ると、サーバー側で出勤・退勤を自動で判定します。"],
+        ["二重打刻を防止", "10分以内の重複打刻は自動で拒否するので、うっかり2回かざしても記録が乱れません。"],
+        ["マイページでQR管理", "社員は自分のQRコードを表示・再生成でき、打刻履歴もダッシュボードで確認できます。"],
+        ["導入しやすい構成", "開発はSQLite、本番はPostgreSQLで動作。自社サーバーやクラウドに設置できます。"]
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "HeicToJpg",
+      "tagline": "右クリックから HEIC を一括で JPG に変換する Windows アプリ",
+      "platform": "Windows",
+      "url": "https://github.com/kagen/heic2jpg"
+    },
+    {
+      "name": "YouTubeChannelMover",
+      "tagline": "YouTube の登録チャンネルを別アカウントへ移す Chrome 拡張",
+      "platform": "Chrome",
+      "url": "https://github.com/kagen/YouTubeChannelMover"
+    },
+    {
+      "name": "audio-monitor",
+      "tagline": "Windows 11 のシステム音声からパターンを検出するツール",
+      "platform": "Windows",
+      "url": "https://github.com/kagen/audio-monitor"
+    }
+  ]
+}
