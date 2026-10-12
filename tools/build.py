@@ -5,6 +5,7 @@
 使い方: python3 tools/build.py
 ストアの掲載内容を更新したいときは先に tools/fetch_store_data.py を実行する。
 """
+import hashlib
 import json
 import re
 from datetime import date
@@ -19,6 +20,11 @@ IOS_DEV = "https://apps.apple.com/jp/developer/id6800308304"
 PRIVACY_ANDROID = "https://kagen.github.io/tiritara-privacy/"
 PRIVACY_IOS = "https://kagen.github.io/tiritara-privacy/ios.html"
 GITHUB = "https://github.com/kagen"
+
+
+def asset_version(path):
+    """CSS・JS の URL に付けるバージョン。内容が変わると変わるので、古いキャッシュが使われない。"""
+    return hashlib.sha256((ROOT / path).read_bytes()).hexdigest()[:8]
 
 FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
@@ -73,7 +79,7 @@ def page(*, title, description, prefix, body, canonical, og_image=None, extra_he
 <link rel="icon" href="{prefix}tiritara_logo_t.png">
 <link rel="apple-touch-icon" href="{prefix}tiritara_logo_t.png">
 {FONTS}
-<link rel="stylesheet" href="{prefix}assets/site.css">
+<link rel="stylesheet" href="{prefix}assets/site.css?v={asset_version('assets/site.css')}">
 {extra_head}
 </head>
 <body>
@@ -262,7 +268,7 @@ def build_index(projects, store):
   }});
 }})();
 </script>
-<script src="assets/hero-fly.js" defer></script>"""
+<script src="assets/hero-fly.js?v={asset_version('assets/hero-fly.js')}" defer></script>"""
     html = page(
         title="tiritara.dev — Android・iOS アプリと Web サービスの個人開発",
         description="tiritara.dev が開発する Android・iOS アプリと Web サービスの紹介。DaZen、電車GPS目覚まし、Kattalyst、RosaNauts、和風六曜暦カレンダー、絵馬掛け、QR勤怠など。",
