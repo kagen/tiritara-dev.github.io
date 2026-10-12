@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<title>電車GPS目覚まし — 降車駅に近づくと鳴る、乗り過ごし防止アラーム | tiritara.dev</title>
+<meta name="description" content="電車GPS目覚まし：降車駅に近づくと鳴る、乗り過ごし防止アラーム。Android / iOS 対応。">
+<link rel="canonical" href="https://tiritara-dev.github.io/apps/train-alarm/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="tiritara.dev">
+<meta property="og:title" content="電車GPS目覚まし — 降車駅に近づくと鳴る、乗り過ごし防止アラーム | tiritara.dev">
+<meta property="og:description" content="電車GPS目覚まし：降車駅に近づくと鳴る、乗り過ごし防止アラーム。Android / iOS 対応。">
+<meta property="og:url" content="https://tiritara-dev.github.io/apps/train-alarm/">
+<meta property="og:image" content="https://tiritara-dev.github.io/assets/apps/train-alarm/icon.webp">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="../../tiritara_logo_t.png">
+<link rel="apple-touch-icon" href="../../tiritara_logo_t.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "電車GPS目覚まし", "description": "降車駅に近づくと鳴る、乗り過ごし防止アラーム", "applicationCategory": "旅行・交通", "operatingSystem": "Android / iOS", "image": "https://tiritara-dev.github.io/assets/apps/train-alarm/icon.webp", "author": {"@type": "Organization", "name": "tiritara.dev", "url": "https://tiritara-dev.github.io/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}, "sameAs": ["https://play.google.com/store/apps/details?id=com.tiritara.traindetector", "https://apps.apple.com/jp/app/%E9%9B%BB%E8%BB%8Agps%E7%9B%AE%E8%A6%9A%E3%81%BE%E3%81%97-%E4%B9%97%E3%82%8A%E9%81%8E%E3%81%94%E3%81%97-%E5%AF%9D%E9%81%8E%E3%81%94%E3%81%97%E9%98%B2%E6%AD%A2%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%A0/id6818022245"]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../"><img src="../../tiritara_logo_t.png" alt="" width="30" height="30">tiritara.dev</a>
+    <nav class="nav" aria-label="メイン">
+      <a href="../../index.html#apps">アプリ</a>
+      <a href="../../index.html#web">Web</a>
+      <a href="../../index.html#tools">ツール</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="wrap">
+  <a class="back" href="../../index.html#apps">← アプリ一覧</a>
+  <section class="detail-hero">
+    <img class="backdrop" src="../../assets/apps/train-alarm/icon.webp" alt="" aria-hidden="true">
+    <div class="detail-head">
+      <img class="detail-icon" src="../../assets/apps/train-alarm/icon.webp" alt="電車GPS目覚まし のアイコン" width="128" height="128">
+      <div>
+        <h1>電車GPS目覚まし</h1>
+        <p class="meta">旅行・交通 · Android / iOS</p>
+        <p class="lead">降車駅に近づくと鳴る、乗り過ごし防止アラーム</p>
+      </div>
+    </div>
+    <div class="store-buttons"><a class="store-btn" href="https://play.google.com/store/apps/details?id=com.tiritara.traindetector" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00d7fe" d="M3.6 1.8 13.5 12l-9.9 10.2c-.36-.2-.6-.6-.6-1.07V2.87c0-.47.24-.87.6-1.07z"/><path fill="#ffce00" d="M17.1 8.4 20.4 10.3c.95.55.95 1.85 0 2.4l-3.3 1.9-3.6-2.6z"/><path fill="#ff3a44" d="M13.5 12 3.6 22.2c.36.2.83.22 1.24-.02L17.1 14.6z"/><path fill="#00f076" d="M3.6 1.8 13.5 12l3.6-3.6L4.84 1.82c-.41-.24-.88-.22-1.24-.02z"/></svg><span><small>Android 版を</small><b>Google Play</b></span></a><a class="store-btn" href="https://apps.apple.com/jp/app/%E9%9B%BB%E8%BB%8Agps%E7%9B%AE%E8%A6%9A%E3%81%BE%E3%81%97-%E4%B9%97%E3%82%8A%E9%81%8E%E3%81%94%E3%81%97-%E5%AF%9D%E9%81%8E%E3%81%94%E3%81%97%E9%98%B2%E6%AD%A2%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%A0/id6818022245" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.37 12.76c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.1 6.01c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg><span><small>iPhone・iPad 版を</small><b>App Store</b></span></a></div>
+  </section>
+</div>
+
+<section class="section" aria-label="スクリーンショット">
+  <div class="wrap">
+    <div class="shots">
+<img src="../../assets/apps/train-alarm/shot-1.webp" alt="電車GPS目覚まし のスクリーンショット 1" loading="lazy">
+<img src="../../assets/apps/train-alarm/shot-2.webp" alt="電車GPS目覚まし のスクリーンショット 2" loading="lazy">
+<img src="../../assets/apps/train-alarm/shot-3.webp" alt="電車GPS目覚まし のスクリーンショット 3" loading="lazy">
+<img src="../../assets/apps/train-alarm/shot-4.webp" alt="電車GPS目覚まし のスクリーンショット 4" loading="lazy">
+<img src="../../assets/apps/train-alarm/shot-5.webp" alt="電車GPS目覚まし のスクリーンショット 5" loading="lazy">
+<img src="../../assets/apps/train-alarm/shot-6.webp" alt="電車GPS目覚まし のスクリーンショット 6" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap detail-body">
+    <article class="prose">
+<h3>降りる駅で、きちんと起こします</h3>
+<p>降りたい駅を選んでおくだけ。近づくとアラームが鳴ります。<br>時刻ではなくGPSの位置で判定するので、電車が遅れても早く着いても、ちゃんとその駅で鳴ります。<br>地下鉄やバスでもお使いいただけます。</p>
+<h3>居眠りしても大丈夫</h3>
+<p>うたた寝しても、画面を消していても、鞄やポケットに入れていても鳴ります。<br>停止するまで鳴り続ける設定にすれば、二度寝しても乗り過ごしません。<br>通勤・通学の電車で居眠りしてしまう方のための駅アラームです。</p>
+<h3>通勤・通学には「常時アラーム」</h3>
+<p>毎日同じ駅で降りるなら、常時アラームをオンにしてください。<br>鳴ったあと自動でセットし直すので、毎日かけ直す必要がありません。<br>曜日と時間帯も指定できるので、休日にその駅を通っただけで鳴ることはありません。</p>
+<h3>乗っている路線を推定します</h3>
+<p>走行中の位置から、いま乗っている路線と進行方向を推定して表示します。<br>降りる駅を選ぶときは、この先に停まる駅から選べます。</p>
+<h3>位置情報は端末の中だけ</h3>
+<p>取得した位置情報は端末内にのみ保存され、外部へ送信することはありません。<br>広告も表示しません。</p>
+<h3>無料でできること</h3>
+<p>アラームを2つまで作れます。通勤の往復ぶんは無料でお使いいただけます。</p>
+<h3>プレミアム（買い切り）</h3>
+<p>一度のお支払いで、アラームを20個まで作成でき、<br>常時アラームと曜日・時間帯の指定が使えるようになります。月額ではありません。</p>
+<p>※ 現在は東京都内のJR・私鉄・地下鉄に対応しています。</p>
+<p>乗り過ごし防止・寝過ごし防止・居眠り対策・降車通知・駅アラームとしてお使いいただけます。</p>
+    </article>
+    <dl class="info"><div><dt>カテゴリ</dt><dd>旅行・交通</dd></div><div><dt>対応</dt><dd>Android / iOS</dd></div><div><dt>バージョン</dt><dd>0.9.2</dd></div><div><dt>最終更新</dt><dd>2026/09/30</dd></div><div><dt>開発者</dt><dd>tiritara.dev</dd></div><div><dt>プライバシー</dt><dd><a href="https://kagen.github.io/tiritara-privacy/?app=電車GPS目覚まし" target="_blank" rel="noopener">Android</a> · <a href="https://kagen.github.io/tiritara-privacy/ios.html" target="_blank" rel="noopener">iOS</a></dd></div></dl>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="h-sub">ほかのアプリ</h2>
+    <div class="app-grid">
+<a class="app-card" href="../../apps/dazen/" data-tags="all life ios">
+  <div class="app-card-top">
+    <img class="app-icon" src="../../assets/apps/dazen/icon.webp" alt="" width="60" height="60" loading="lazy">
+    <div><h3>DaZen</h3><p class="cat">健康・瞑想</p></div>
+  </div>
+  <p class="tagline">バイノーラルビートと自然のノイズで、静かに瞑想</p>
+  <div class="platforms"><span class="platform"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M4 18a8 8 0 0 1 16 0zM8 14.2a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0zM13.8 14.2a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0z"/><path d="M7.6 10.4 5.8 7.4M16.4 10.4l1.8-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Android</span><span class="platform"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.37 12.76c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.1 6.01c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg>iOS</span></div>
+  <span class="arrow" aria-hidden="true">↗</span>
+</a>
+<a class="app-card" href="../../apps/kattalyst/" data-tags="all life ios">
+  <div class="app-card-top">
+    <img class="app-icon" src="../../assets/apps/kattalyst/icon.webp" alt="" width="60" height="60" loading="lazy">
+    <div><h3>Kattalyst</h3><p class="cat">ショッピング</p></div>
+  </div>
+  <p class="tagline">いつものまとめ買いを、直感操作の買い物リストで</p>
+  <div class="platforms"><span class="platform"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M4 18a8 8 0 0 1 16 0zM8 14.2a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0zM13.8 14.2a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0z"/><path d="M7.6 10.4 5.8 7.4M16.4 10.4l1.8-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Android</span><span class="platform"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.37 12.76c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.1 6.01c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg>iOS</span></div>
+  <span class="arrow" aria-hidden="true">↗</span>
+</a>
+<a class="app-card" href="../../apps/rosanauts/" data-tags="all life ios">
+  <div class="app-card-top">
+    <img class="app-icon" src="../../assets/apps/rosanauts/icon.webp" alt="" width="60" height="60" loading="lazy">
+    <div><h3>RosaNauts</h3><p class="cat">ライフスタイル</p></div>
+  </div>
+  <p class="tagline">バラ・ガーデニングの育成記録とスケジュール管理</p>
+  <div class="platforms"><span class="platform"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M4 18a8 8 0 0 1 16 0zM8 14.2a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0zM13.8 14.2a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0z"/><path d="M7.6 10.4 5.8 7.4M16.4 10.4l1.8-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Android</span><span class="platform"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.37 12.76c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.76 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.1 6.01c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.1 1.76-.96 2.8 1.01.08 2.05-.52 2.68-1.28z"/></svg>iOS</span></div>
+  <span class="arrow" aria-hidden="true">↗</span>
+</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 tiritara.dev</p>
+    <nav class="footer-links" aria-label="フッター">
+      <a href="https://play.google.com/store/apps/dev?id=5924475083153244319" target="_blank" rel="noopener">Google Play</a>
+      <a href="https://apps.apple.com/jp/developer/id6800308304" target="_blank" rel="noopener">App Store</a>
+      <a href="https://github.com/kagen" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://kagen.github.io/tiritara-privacy/" target="_blank" rel="noopener">プライバシーポリシー</a>
+      <a href="mailto:tiritara.dev@gmail.com">お問い合わせ</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
