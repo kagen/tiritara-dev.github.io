@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>tiritara.dev パンフレット</title>
+<style>
+@page { size: 297mm 210mm; margin: 0; }
+:root {
+  --ink: #0d1222; --muted: #4f5a72; --faint: #8a93a8; --line: #e3e7f0;
+  --accent: #2f6fe4; --accent-2: #7b4fe0; --navy: #0a0e1a; --soft: #f4f6fb;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  color: var(--ink); font-size: 8.4pt; line-height: 1.6;
+}
+.sheet {
+  position: relative; width: 297mm; height: 210mm; overflow: hidden;
+  display: grid; break-after: page; background: #fff;
+}
+.sheet:last-child { break-after: auto; }
+.outside { grid-template-columns: 97mm 100mm 100mm; }
+.inside { grid-template-columns: 100mm 100mm 97mm; }
+.panel { position: relative; padding: 12mm 9mm 11mm; display: flex; flex-direction: column; }
+.en { font-family: "Avenir Next", "Helvetica Neue", sans-serif; }
+
+/* 折り位置のトンボ（上下の端に小さく） */
+.fold { position: absolute; top: 0; bottom: 0; width: 0; }
+.fold::before, .fold::after { content: ""; position: absolute; left: -0.15mm; width: 0.3mm; height: 4mm; background: #c9cfdc; }
+.fold::before { top: 0; } .fold::after { bottom: 0; }
+
+.eyebrow { font-family: "Avenir Next", sans-serif; font-weight: 700; font-size: 6.6pt; letter-spacing: .28em; color: var(--accent); text-transform: uppercase; }
+h2 { font-size: 14pt; font-weight: 700; letter-spacing: .02em; margin: 1.2mm 0 1.5mm; }
+.lead { color: var(--muted); font-size: 7.8pt; margin-bottom: 4mm; }
+.rule { height: 0.9mm; width: 14mm; border-radius: 1mm; background: linear-gradient(90deg, var(--accent), var(--accent-2)); margin: 2.5mm 0 3mm; }
+
+/* ---- 表紙 ---- */
+.cover { padding: 6mm 6mm 6mm 6mm; }
+.cover-card {
+  position: relative; flex: 1; border-radius: 5mm; overflow: hidden; color: #fff;
+  background:
+    radial-gradient(70% 45% at 15% 5%, rgba(118,168,255,.35), transparent 70%),
+    radial-gradient(60% 40% at 95% 30%, rgba(162,107,255,.30), transparent 70%),
+    var(--navy);
+  display: flex; flex-direction: column; align-items: center; padding: 9mm 7mm 8mm;
+}
+.cloud { position: relative; width: 74mm; height: 104mm; }
+.cloud .float { position: absolute; border-radius: 24%; box-shadow: 0 1.5mm 3mm rgba(0,0,0,.45); border: .2mm solid rgba(255,255,255,.12); }
+.cloud .logo-box {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 30mm; height: 30mm; border-radius: 7mm; background: #fff; display: grid; place-items: center;
+  box-shadow: 0 0 9mm rgba(118,168,255,.55);
+}
+/* ロゴ画像の下の文字は表紙の見出しと重複するので、マーク部分だけを切り出す */
+.cloud .logo-box .mark { width: 24mm; height: 17mm; background: url(../tiritara_logo_t.png) no-repeat -3.5mm -0.9mm / 32.2mm auto; }
+.cover h1 { font-family: "Avenir Next", sans-serif; font-weight: 800; font-size: 25pt; letter-spacing: -.01em; margin-top: 5mm; }
+.cover .catch {
+  font-family: "Avenir Next", sans-serif; font-weight: 700; font-size: 12pt; line-height: 1.25; text-align: center; margin-top: 2mm;
+  background: linear-gradient(100deg, #fff 15%, #8fb8ff 55%, #b48cff 95%); -webkit-background-clip: text; color: transparent;
+}
+.cover .sub { margin-top: auto; text-align: center; font-size: 8pt; color: #c7cee3; line-height: 1.75; }
+.cover .sub b { color: #fff; font-weight: 600; }
+
+/* ---- 裏表紙 ---- */
+.back { align-items: center; text-align: center; }
+.back .big-qr { width: 46mm; height: 46mm; margin: 5mm 0 3mm; padding: 2mm; border-radius: 3mm; border: .3mm solid var(--line); }
+.back .big-qr .qr { width: 100%; height: 100%; display: block; }
+.back .url { font-family: "Avenir Next", sans-serif; font-weight: 700; font-size: 11.5pt; letter-spacing: .01em; }
+.back .hint { color: var(--muted); font-size: 7.4pt; margin-top: 1mm; }
+.stores { display: flex; gap: 6mm; margin-top: 8mm; }
+.store { display: flex; flex-direction: column; align-items: center; gap: 1.2mm; font-size: 7pt; color: var(--muted); }
+.store .qr { width: 20mm; height: 20mm; }
+.store b { color: var(--ink); font-size: 7.6pt; }
+.contact { margin-top: auto; width: 100%; padding-top: 4mm; border-top: .3mm solid var(--line); font-size: 7.6pt; color: var(--muted); }
+.contact b { display: block; color: var(--ink); font-size: 9pt; font-family: "Avenir Next", sans-serif; }
+
+/* ---- 折り込み面（about） ---- */
+.about p.body { font-size: 8.2pt; line-height: 1.9; color: var(--muted); }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; margin: 5mm 0; }
+.stat { background: var(--soft); border-radius: 2.5mm; padding: 3mm 3.5mm; }
+.stat b { display: block; font-family: "Avenir Next", sans-serif; font-weight: 700; font-size: 17pt; line-height: 1.1;
+  background: linear-gradient(100deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; color: transparent; }
+.stat span { font-size: 7pt; color: var(--muted); }
+.points { list-style: none; display: grid; gap: 3mm; }
+.points li { padding-left: 4.5mm; position: relative; font-size: 7.8pt; color: var(--muted); }
+.points li::before { content: ""; position: absolute; left: 0; top: 1.6mm; width: 2mm; height: 2mm; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+.points b { display: block; color: var(--ink); font-size: 8.6pt; }
+
+/* ---- アプリ一覧 ---- */
+.list { list-style: none; display: grid; gap: 2.6mm; }
+.list.roomy { gap: 5.2mm; }
+.app { display: flex; gap: 3mm; align-items: center; }
+.app img { width: 11.5mm; height: 11.5mm; border-radius: 2.8mm; border: .2mm solid var(--line); flex: none; }
+.name { font-weight: 700; font-size: 8.6pt; line-height: 1.35; display: flex; align-items: center; flex-wrap: wrap; gap: 1mm; }
+.tag { font-size: 7.1pt; color: var(--muted); line-height: 1.5; }
+.pf { font-family: "Avenir Next", sans-serif; font-weight: 600; font-size: 5.6pt; letter-spacing: .02em; color: var(--accent);
+  border: .2mm solid #c8d6f6; border-radius: 1mm; padding: 0 1mm; line-height: 1.6; }
+.section-gap { margin-top: 6mm; }
+.webs { list-style: none; display: grid; gap: 2.5mm; }
+.web { background: var(--soft); border-radius: 2.5mm; padding: 2.8mm 3.5mm; }
+.web .url { font-family: "Avenir Next", sans-serif; font-size: 6.8pt; color: var(--accent); margin-top: .5mm; }
+
+/* ---- おすすめ ---- */
+.feats { display: grid; gap: 3.5mm; }
+.feat { display: grid; grid-template-columns: 30mm 1fr; gap: 3mm; padding-bottom: 3.5mm; border-bottom: .3mm solid var(--line); }
+.feat:last-child { border-bottom: 0; padding-bottom: 0; }
+.feat-shots { display: flex; gap: 1.2mm; }
+.feat-shots img { width: 14.4mm; height: 30mm; object-fit: cover; border-radius: 1.6mm; border: .2mm solid var(--line); }
+.feat-head { display: flex; gap: 2mm; align-items: center; margin-bottom: 1mm; }
+.ficon { width: 9mm; height: 9mm; border-radius: 2.2mm; border: .2mm solid var(--line); }
+.pfs { display: flex; gap: 1mm; margin-top: .3mm; }
+.feat-qr { display: flex; align-items: center; gap: 2mm; margin-top: 1.5mm; font-size: 6.4pt; color: var(--muted); line-height: 1.35; }
+.feat-qr .qr { width: 13mm; height: 13mm; flex: none; }
+.foot { margin-top: auto; font-size: 6.6pt; color: var(--faint); }
+</style>
+</head>
+<body>
+
+<!-- 外側（1ページ目）: 折り込み面 | 裏表紙 | 表紙 -->
+<section class="sheet outside">
+  <div class="panel about">
+    <p class="eyebrow">About</p>
+    <h2>tiritara.dev について</h2>
+    <div class="rule"></div>
+    <p class="body">tiritara.dev は、Android・iOS アプリと Web サービスを個人で企画・開発しています。毎日のちょっとした不便をなくすツールから、気軽に遊べるゲーム、お店や会社で使える業務システムまで。使う人がちょっと笑顔になれるものづくりを目指しています。</p>
+    <div class="stats">
+      <div class="stat"><b>17</b><span>公開中のアプリ</span></div>
+      <div class="stat"><b>2</b><span>Web サービス</span></div>
+      <div class="stat"><b>16</b><span>Android</span></div>
+      <div class="stat"><b>9</b><span>iOS</span></div>
+    </div>
+    <ul class="points">
+      <li><b>暮らしを少し便利に</b>買い物リスト、乗り過ごし防止、六曜カレンダー、ガーデニング記録など。</li>
+      <li><b>すきま時間に遊べるゲーム</b>アーケード、ボードゲーム、カードゲーム、脳トレパズル。</li>
+      <li><b>Web サービス・業務システム</b>オンライン絵馬や、QR コードで打刻する勤怠システム。</li>
+    </ul>
+  </div>
+
+  <div class="panel back">
+    <p class="eyebrow">Website</p>
+    <h2>すべてのアプリはこちら</h2>
+    <div class="big-qr"><svg class="qr" preserveAspectRatio="xMidYMid meet" viewBox="0 0 33 33" class="segno"><path fill="#fff" d="M0 0h33v33h-33z"/><path class="qrline" stroke="#0d1222" d="M2 2.5h7m2 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m5 0h1m4 0h1m2 0h1m2 0h4m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h3m2 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h2m4 0h2m3 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h2m1 0h5m1 0h1m1 0h1m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-19 1h1m2 0h1m1 0h3m-17 1h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h3m2 0h1m2 0h2m1 0h2m1 0h1m-25 1h3m3 0h1m1 0h1m2 0h1m2 0h3m3 0h3m1 0h3m-28 1h2m1 0h1m1 0h1m1 0h4m1 0h5m2 0h2m2 0h1m3 0h1m-27 1h1m1 0h1m4 0h5m3 0h2m1 0h2m3 0h1m1 0h2m-29 1h1m2 0h4m1 0h1m2 0h1m2 0h1m2 0h1m1 0h2m2 0h1m1 0h1m2 0h1m-27 1h2m1 0h1m1 0h6m1 0h2m1 0h1m4 0h1m1 0h1m1 0h1m1 0h1m-28 1h2m2 0h3m4 0h2m1 0h3m3 0h1m2 0h1m3 0h1m-29 1h1m1 0h4m1 0h1m2 0h3m3 0h3m1 0h1m1 0h2m1 0h1m2 0h1m-26 1h1m1 0h7m1 0h2m2 0h1m1 0h1m1 0h1m5 0h2m-29 1h1m7 0h1m1 0h1m1 0h3m3 0h1m2 0h4m1 0h1m1 0h1m-25 1h4m4 0h1m1 0h5m4 0h3m2 0h1m-21 1h1m1 0h1m3 0h4m6 0h2m-26 1h2m2 0h3m1 0h1m3 0h2m3 0h1m2 0h5m2 0h2m-21 1h2m2 0h2m1 0h4m1 0h1m3 0h1m1 0h1m1 0h1m-29 1h7m2 0h2m3 0h3m1 0h3m1 0h1m1 0h1m2 0h2m-29 1h1m5 0h1m4 0h2m3 0h5m3 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m4 0h2m2 0h8m-25 1h1m1 0h3m1 0h1m3 0h3m1 0h1m3 0h1m4 0h1m2 0h2m-28 1h1m1 0h3m1 0h1m3 0h1m1 0h4m1 0h1m1 0h3m4 0h3m-29 1h1m5 0h1m1 0h1m8 0h2m1 0h1m1 0h2m3 0h2m-29 1h7m2 0h2m2 0h1m1 0h3m2 0h1m3 0h2m1 0h1"/></svg></div>
+    <p class="url en">tiritara-dev.github.io</p>
+    <p class="hint">スマホのカメラで読み取ると、アプリの紹介ページが開きます</p>
+    <div class="stores">
+      <div class="store"><svg class="qr" preserveAspectRatio="xMidYMid meet" viewBox="0 0 37 37" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"/><path class="qrline" stroke="#0d1222" d="M2 2.5h7m1 0h3m2 0h1m4 0h4m1 0h1m2 0h7m-33 1h1m5 0h1m1 0h4m2 0h1m1 0h2m3 0h1m1 0h1m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m5 0h3m3 0h1m3 0h3m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m5 0h4m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m4 0h1m1 0h3m2 0h3m1 0h1m3 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m4 0h2m1 0h1m2 0h5m2 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m3 0h1m4 0h4m1 0h2m-24 1h1m1 0h2m1 0h3m1 0h1m1 0h1m2 0h1m1 0h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h2m-32 1h4m2 0h1m2 0h3m3 0h1m1 0h4m1 0h2m1 0h2m1 0h4m-33 1h2m3 0h2m1 0h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h4m1 0h3m1 0h2m-33 1h1m1 0h3m3 0h2m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m3 0h2m1 0h1m1 0h1m-32 1h1m1 0h2m1 0h3m2 0h2m3 0h6m2 0h1m1 0h1m2 0h2m-29 1h1m5 0h1m1 0h2m1 0h1m1 0h2m2 0h5m6 0h1m1 0h1m-32 1h1m5 0h3m1 0h2m1 0h1m4 0h2m1 0h1m2 0h1m1 0h1m2 0h2m-31 1h1m1 0h4m1 0h1m1 0h1m2 0h1m1 0h1m6 0h2m2 0h2m3 0h1m-31 1h5m1 0h3m2 0h1m1 0h2m1 0h1m2 0h8m1 0h3m-31 1h1m1 0h3m3 0h1m1 0h4m1 0h1m6 0h3m1 0h1m1 0h2m2 0h1m-33 1h1m3 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h4m1 0h3m3 0h3m1 0h2m-32 1h1m2 0h1m1 0h1m1 0h1m1 0h3m2 0h5m4 0h1m1 0h2m1 0h1m3 0h1m-32 1h1m3 0h3m2 0h1m1 0h2m1 0h1m1 0h1m1 0h4m1 0h1m2 0h1m1 0h3m-32 1h1m1 0h4m2 0h3m6 0h1m1 0h1m2 0h3m1 0h1m2 0h1m2 0h1m-27 1h4m4 0h1m3 0h1m1 0h5m1 0h2m2 0h3m-32 1h3m3 0h4m1 0h1m5 0h2m4 0h2m1 0h3m-30 1h1m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m4 0h7m2 0h2m-25 1h4m2 0h6m3 0h2m3 0h2m1 0h1m-32 1h7m1 0h2m2 0h2m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h2m4 0h3m1 0h1m1 0h5m3 0h4m-32 1h1m1 0h3m1 0h1m2 0h1m3 0h1m2 0h1m2 0h1m1 0h1m1 0h6m1 0h1m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m2 0h4m1 0h1m8 0h1m1 0h1m2 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h2m2 0h1m-31 1h1m5 0h1m2 0h2m1 0h1m1 0h1m1 0h3m3 0h1m1 0h5m3 0h1m-33 1h7m1 0h1m3 0h3m2 0h3m1 0h1m3 0h1m2 0h1m1 0h1"/></svg><b>Google Play</b>Android 版</div>
+      <div class="store"><svg class="qr" preserveAspectRatio="xMidYMid meet" viewBox="0 0 37 37" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"/><path class="qrline" stroke="#0d1222" d="M2 2.5h7m2 0h2m5 0h1m1 0h3m2 0h1m2 0h7m-33 1h1m5 0h1m2 0h1m1 0h1m3 0h1m2 0h1m1 0h2m2 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h1m2 0h3m1 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h3m2 0h1m2 0h2m3 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h4m2 0h4m2 0h5m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h5m1 0h1m4 0h1m1 0h1m2 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h2m1 0h1m2 0h1m1 0h1m2 0h4m1 0h1m-25 1h1m1 0h5m4 0h1m1 0h2m1 0h4m2 0h1m1 0h1m1 0h5m-31 1h1m7 0h4m1 0h1m2 0h9m1 0h2m1 0h2m1 0h1m-31 1h1m1 0h7m2 0h5m2 0h1m4 0h1m2 0h1m1 0h2m-32 1h1m2 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h5m1 0h4m1 0h1m1 0h3m-26 1h2m1 0h2m4 0h3m3 0h1m7 0h2m-30 1h1m1 0h3m6 0h1m3 0h1m1 0h2m2 0h7m1 0h4m-33 1h1m1 0h2m2 0h4m2 0h2m1 0h3m2 0h2m3 0h3m1 0h3m-30 1h2m1 0h1m1 0h3m1 0h1m1 0h3m5 0h1m1 0h4m2 0h2m-31 1h5m1 0h1m1 0h1m5 0h2m1 0h1m4 0h1m2 0h1m1 0h3m2 0h1m-33 1h1m2 0h1m1 0h1m1 0h4m5 0h1m1 0h6m2 0h2m1 0h4m-30 1h1m1 0h6m1 0h1m1 0h2m2 0h1m2 0h1m2 0h1m1 0h3m1 0h2m-28 1h2m4 0h2m1 0h1m1 0h2m2 0h3m2 0h1m2 0h6m-33 1h4m2 0h1m1 0h2m1 0h5m2 0h2m7 0h3m1 0h2m-33 1h1m1 0h1m1 0h1m4 0h1m4 0h4m2 0h7m3 0h1m1 0h1m-33 1h1m4 0h2m1 0h6m3 0h3m1 0h1m2 0h1m6 0h1m-32 1h1m3 0h1m7 0h2m2 0h1m1 0h4m2 0h2m1 0h2m1 0h1m-31 1h1m2 0h4m3 0h1m3 0h1m2 0h1m1 0h1m2 0h1m1 0h5m-21 1h2m3 0h2m1 0h2m1 0h1m1 0h1m1 0h2m3 0h1m1 0h1m1 0h1m-33 1h7m2 0h1m1 0h3m1 0h3m2 0h5m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m1 0h1m3 0h1m1 0h1m1 0h3m1 0h2m1 0h2m3 0h3m-31 1h1m1 0h3m1 0h1m1 0h2m2 0h3m1 0h1m4 0h1m2 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m1 0h5m1 0h2m2 0h1m5 0h2m2 0h2m1 0h2m-33 1h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h2m1 0h1m2 0h2m1 0h4m1 0h1m-30 1h1m5 0h1m2 0h3m3 0h1m2 0h1m2 0h1m1 0h1m4 0h3m-31 1h7m1 0h2m2 0h2m1 0h1m1 0h2m3 0h1m1 0h1m2 0h1m3 0h1"/></svg><b>App Store</b>iPhone・iPad 版</div>
+    </div>
+    <div class="contact"><b>tiritara.dev@gmail.com</b>ご感想・ご要望・お仕事のご相談はお気軽にどうぞ</div>
+  </div>
+
+  <div class="panel cover">
+    <div class="cover-card">
+      <div class="cloud">
+        <img class="float" src="../assets/apps/dazen/icon.webp" alt="" style="left:14.4mm;top:85.3mm;width:14mm;height:14mm;transform:rotate(4deg)">
+<img class="float" src="../assets/apps/train-alarm/icon.webp" alt="" style="left:6.3mm;top:23.6mm;width:11mm;height:11mm;transform:rotate(6deg)">
+<img class="float" src="../assets/apps/kattalyst/icon.webp" alt="" style="left:60.7mm;top:20.0mm;width:12mm;height:12mm;transform:rotate(4deg)">
+<img class="float" src="../assets/apps/rosanauts/icon.webp" alt="" style="left:24.5mm;top:11.5mm;width:10mm;height:10mm;transform:rotate(4deg)">
+<img class="float" src="../assets/apps/rokuyou-calendar/icon.webp" alt="" style="left:56.5mm;top:44.5mm;width:13mm;height:13mm;transform:rotate(-6deg)">
+<img class="float" src="../assets/apps/soundbtn/icon.webp" alt="" style="left:43.8mm;top:87.4mm;width:11mm;height:11mm;transform:rotate(9deg)">
+<img class="float" src="../assets/apps/bear-alert/icon.webp" alt="" style="left:56.6mm;top:1.7mm;width:14mm;height:14mm;transform:rotate(9deg)">
+<img class="float" src="../assets/apps/lenticular/icon.png" alt="" style="left:60.8mm;top:70.9mm;width:10mm;height:10mm;transform:rotate(-6deg)">
+<img class="float" src="../assets/apps/liferec/icon.webp" alt="" style="left:37.6mm;top:3.2mm;width:12mm;height:12mm;transform:rotate(-6deg)">
+<img class="float" src="../assets/apps/minnanoichiji/icon.webp" alt="" style="left:44.0mm;top:19.3mm;width:11mm;height:11mm;transform:rotate(4deg)">
+<img class="float" src="../assets/apps/tenkeirin/icon.webp" alt="" style="left:1.7mm;top:55.5mm;width:13mm;height:13mm;transform:rotate(-6deg)">
+<img class="float" src="../assets/apps/lazerfloor/icon.webp" alt="" style="left:58.5mm;top:91.3mm;width:10mm;height:10mm;transform:rotate(-6deg)">
+<img class="float" src="../assets/apps/square-drawing/icon.webp" alt="" style="left:7.7mm;top:5.8mm;width:12mm;height:12mm;transform:rotate(-9deg)">
+<img class="float" src="../assets/apps/flightchess/icon.webp" alt="" style="left:40.4mm;top:72.5mm;width:11mm;height:11mm;transform:rotate(4deg)">
+<img class="float" src="../assets/apps/runfast/icon.webp" alt="" style="left:6.5mm;top:74.0mm;width:10mm;height:10mm;transform:rotate(9deg)">
+<img class="float" src="../assets/apps/24-points/icon.webp" alt="" style="left:3.3mm;top:38.4mm;width:13mm;height:13mm;transform:rotate(-4deg)">
+<img class="float" src="../assets/apps/chinese-chess/icon.webp" alt="" style="left:23.7mm;top:72.5mm;width:11mm;height:11mm;transform:rotate(9deg)">
+        <div class="logo-box"><div class="mark"></div></div>
+      </div>
+      <h1 class="en">tiritara.dev</h1>
+      <p class="catch">Code smarter.<br>Live smiler.</p>
+      <p class="sub"><b>Android・iOS アプリと Web サービス</b><br>個人開発のアプリ紹介</p>
+    </div>
+  </div>
+  <span class="fold" style="left:97mm"></span><span class="fold" style="left:197mm"></span>
+</section>
+
+<!-- 内側（2ページ目）: 暮らし・ツール | ゲーム・Web | おすすめ -->
+<section class="sheet inside">
+  <div class="panel">
+    <p class="eyebrow">Apps</p>
+    <h2>暮らし・ツールのアプリ</h2>
+    <div class="rule"></div>
+    <ul class="list roomy">
+<li class="app">
+  <img src="../assets/apps/rosanauts/icon.webp" alt="">
+  <div><p class="name">RosaNauts<span class="pf">Android</span><span class="pf">iOS</span></p><p class="tag">バラ・ガーデニングの育成記録とスケジュール管理</p></div>
+</li><li class="app">
+  <img src="../assets/apps/rokuyou-calendar/icon.webp" alt="">
+  <div><p class="name">和風六曜暦カレンダー<span class="pf">Android</span><span class="pf">iOS</span></p><p class="tag">六曜・旧暦・祝日・天気がひと目でわかる和風カレンダー</p></div>
+</li><li class="app">
+  <img src="../assets/apps/soundbtn/icon.webp" alt="">
+  <div><p class="name">音ボタン SoundBtn<span class="pf">Android</span><span class="pf">iOS</span></p><p class="tag">降車ボタン・風鈴・蝉・タイマーをワンタップで</p></div>
+</li><li class="app">
+  <img src="../assets/apps/bear-alert/icon.webp" alt="">
+  <div><p class="name">Bear Alert<span class="pf">Android</span><span class="pf">iOS</span></p><p class="tag">熊よけの警報音・フラッシュ・緊急撮影をすぐに</p></div>
+</li><li class="app">
+  <img src="../assets/apps/lenticular/icon.png" alt="">
+  <div><p class="name">Lenticular<span class="pf">iOS</span></p><p class="tag">傾けると絵が変わる、懐かしいレンチキュラーをスマホで</p></div>
+</li><li class="app">
+  <img src="../assets/apps/liferec/icon.webp" alt="">
+  <div><p class="name">liferec<span class="pf">Android</span></p><p class="tag">ホーム画面からワンタップで、毎日の出来事を記録</p></div>
+</li><li class="app">
+  <img src="../assets/apps/minnanoichiji/icon.webp" alt="">
+  <div><p class="name">みんなの一字<span class="pf">Android</span></p><p class="tag">今年を表す漢字一文字を、手書きで投稿</p></div>
+</li><li class="app">
+  <img src="../assets/apps/tenkeirin/icon.webp" alt="">
+  <div><p class="name">転経輪<span class="pf">Android</span></p><p class="tag">画面の中で経が回り続ける、デジタル時代の転経輪</p></div>
+</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <p class="eyebrow">Games</p>
+    <h2>ゲーム</h2>
+    <div class="rule"></div>
+    <ul class="list">
+<li class="app">
+  <img src="../assets/apps/lazerfloor/icon.webp" alt="">
+  <div><p class="name">Lazerfloor<span class="pf">Android</span><span class="pf">iOS</span></p><p class="tag">走って跳んでレーザーをかわす、ネオンのアーケード</p></div>
+</li><li class="app">
+  <img src="../assets/apps/square-drawing/icon.webp" alt="">
+  <div><p class="name">正方形ゲーム<span class="pf">Android</span></p><p class="tag">指でぴったりの正方形を描く、30秒パズル</p></div>
+</li><li class="app">
+  <img src="../assets/apps/flightchess/icon.webp" alt="">
+  <div><p class="name">飛行棋 空中大激闘<span class="pf">Android</span></p><p class="tag">シンプルなルールに奥深い戦略。CPUともみんなとも</p></div>
+</li><li class="app">
+  <img src="../assets/apps/runfast/icon.webp" alt="">
+  <div><p class="name">Run Fast 争上游<span class="pf">Android</span></p><p class="tag">上海版大富豪。3人オンライン対戦とCPU戦</p></div>
+</li><li class="app">
+  <img src="../assets/apps/24-points/icon.webp" alt="">
+  <div><p class="name">24ポイント<span class="pf">Android</span></p><p class="tag">4枚のカードと四則演算で「24」を作る脳トレ</p></div>
+</li><li class="app">
+  <img src="../assets/apps/chinese-chess/icon.webp" alt="">
+  <div><p class="name">AI中国象棋<span class="pf">Android</span></p><p class="tag">AIと対局できる、シンプルな中国象棋</p></div>
+</li>
+    </ul>
+    <div class="section-gap"></div>
+    <p class="eyebrow">Web</p>
+    <h2>Web サービス</h2>
+    <div class="rule"></div>
+    <ul class="webs">
+<li class="web"><p class="name">絵馬掛け</p><p class="tag">ことしの抱負を、オンラインの絵馬に</p>
+<p class="url">emakake.web.app</p></li>
+<li class="web"><p class="name">QR勤怠</p><p class="tag">QRコードをかざすだけの勤怠打刻システム</p>
+<p class="url">導入のご相談を承ります</p></li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <p class="eyebrow">Pick up</p>
+    <h2>おすすめアプリ</h2>
+    <div class="rule"></div>
+    <div class="feats">
+<div class="feat">
+  <div class="feat-shots"><img src="../assets/apps/dazen/shot-1.webp" alt=""><img src="../assets/apps/dazen/shot-2.webp" alt=""></div>
+  <div class="feat-body">
+    <div class="feat-head"><img class="ficon" src="../assets/apps/dazen/icon.webp" alt="">
+      <div><p class="name">DaZen</p><p class="pfs"><span class="pf">Android</span><span class="pf">iOS</span></p></div></div>
+    <p class="tag">バイノーラルビートと自然のノイズで、静かに瞑想</p>
+    <div class="feat-qr"><svg class="qr" preserveAspectRatio="xMidYMid meet" viewBox="0 0 33 33" class="segno"><path fill="#fff" d="M0 0h33v33h-33z"/><path class="qrline" stroke="#0d1222" d="M2 2.5h7m2 0h4m3 0h5m1 0h7m-29 1h1m5 0h1m2 0h2m3 0h3m1 0h1m1 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h2m6 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m3 0h1m2 0h2m5 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m2 0h1m2 0h1m3 0h3m-21 1h1m1 0h5m2 0h3m1 0h5m1 0h1m2 0h5m-26 1h2m1 0h2m4 0h1m2 0h2m1 0h4m2 0h3m3 0h1m-23 1h8m1 0h1m2 0h1m4 0h2m-24 1h1m3 0h1m4 0h2m3 0h1m2 0h4m3 0h1m1 0h1m-28 1h4m1 0h3m2 0h1m1 0h6m2 0h1m4 0h2m-24 1h2m2 0h1m4 0h1m3 0h1m2 0h6m3 0h1m-29 1h5m1 0h4m2 0h1m1 0h2m4 0h2m3 0h2m-27 1h1m1 0h1m4 0h1m2 0h2m2 0h2m4 0h1m3 0h1m2 0h1m-28 1h1m3 0h1m1 0h2m2 0h1m1 0h6m5 0h1m1 0h2m-27 1h2m1 0h2m2 0h2m4 0h1m2 0h1m1 0h3m1 0h3m1 0h1m1 0h1m-29 1h1m1 0h1m1 0h15m2 0h1m1 0h2m1 0h1m-27 1h1m2 0h2m10 0h1m2 0h1m1 0h3m4 0h1m-28 1h1m1 0h1m2 0h2m1 0h4m1 0h1m1 0h1m1 0h2m1 0h5m1 0h3m-21 1h1m2 0h1m1 0h1m2 0h3m1 0h1m3 0h5m-29 1h7m2 0h9m1 0h2m1 0h1m1 0h3m-27 1h1m5 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h3m3 0h1m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m6 0h1m2 0h5m1 0h3m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m4 0h3m5 0h4m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h3m1 0h10m-28 1h1m5 0h1m2 0h1m2 0h2m2 0h1m3 0h2m2 0h2m1 0h1m-28 1h7m1 0h1m1 0h1m2 0h1m3 0h1m5 0h4"/></svg><span>詳細・<br>ダウンロード</span></div>
+  </div>
+</div>
+<div class="feat">
+  <div class="feat-shots"><img src="../assets/apps/train-alarm/shot-1.webp" alt=""><img src="../assets/apps/train-alarm/shot-2.webp" alt=""></div>
+  <div class="feat-body">
+    <div class="feat-head"><img class="ficon" src="../assets/apps/train-alarm/icon.webp" alt="">
+      <div><p class="name">電車GPS目覚まし</p><p class="pfs"><span class="pf">Android</span><span class="pf">iOS</span></p></div></div>
+    <p class="tag">降車駅に近づくと鳴る、乗り過ごし防止アラーム</p>
+    <div class="feat-qr"><svg class="qr" preserveAspectRatio="xMidYMid meet" viewBox="0 0 37 37" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"/><path class="qrline" stroke="#0d1222" d="M2 2.5h7m2 0h4m1 0h2m2 0h2m2 0h2m2 0h7m-33 1h1m5 0h1m2 0h1m1 0h2m2 0h1m1 0h1m3 0h3m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m1 0h2m3 0h1m4 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m1 0h1m3 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h4m5 0h2m1 0h2m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h2m1 0h1m1 0h1m2 0h5m1 0h2m-25 1h1m2 0h1m1 0h2m1 0h1m3 0h2m1 0h2m2 0h1m1 0h1m3 0h1m1 0h1m-26 1h1m1 0h1m2 0h2m1 0h3m3 0h1m4 0h2m1 0h4m4 0h1m-33 1h8m1 0h1m2 0h1m4 0h1m1 0h3m3 0h4m1 0h1m1 0h1m-33 1h1m1 0h4m3 0h4m1 0h1m1 0h2m3 0h1m4 0h1m1 0h2m1 0h2m-32 1h4m1 0h2m1 0h1m1 0h2m2 0h1m5 0h1m1 0h4m2 0h1m2 0h1m-31 1h1m1 0h1m2 0h2m1 0h1m1 0h1m2 0h2m4 0h2m1 0h1m1 0h1m1 0h2m1 0h2m-32 1h3m1 0h2m2 0h1m1 0h1m5 0h2m1 0h4m1 0h2m2 0h3m-32 1h1m2 0h3m4 0h1m4 0h1m1 0h3m1 0h1m1 0h1m2 0h2m3 0h1m-32 1h1m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m-30 1h2m3 0h1m1 0h2m3 0h1m3 0h1m4 0h2m2 0h1m1 0h1m-30 1h3m1 0h4m2 0h1m1 0h1m3 0h1m1 0h1m5 0h1m5 0h3m-33 1h2m2 0h2m2 0h3m1 0h3m1 0h3m1 0h2m3 0h1m1 0h1m3 0h1m-30 1h2m2 0h2m3 0h1m1 0h1m2 0h3m2 0h5m1 0h1m-25 1h2m2 0h1m1 0h1m1 0h1m3 0h7m2 0h3m2 0h1m1 0h2m-33 1h2m2 0h5m1 0h1m1 0h1m2 0h1m4 0h1m5 0h1m2 0h1m2 0h1m-32 1h4m2 0h4m3 0h1m1 0h1m4 0h2m1 0h3m4 0h2m-33 1h1m2 0h1m1 0h2m4 0h1m3 0h3m1 0h10m3 0h1m-25 1h7m4 0h2m1 0h1m1 0h1m3 0h2m2 0h1m-33 1h7m3 0h1m1 0h2m7 0h1m2 0h1m1 0h1m1 0h4m-32 1h1m5 0h1m1 0h3m1 0h1m1 0h3m2 0h4m1 0h1m3 0h1m3 0h1m-33 1h1m1 0h3m1 0h1m3 0h4m2 0h1m2 0h2m3 0h6m-30 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h2m2 0h1m2 0h1m1 0h3m-31 1h1m1 0h3m1 0h1m2 0h2m1 0h3m3 0h1m1 0h1m7 0h2m2 0h1m-33 1h1m5 0h1m4 0h3m1 0h3m3 0h1m1 0h4m-27 1h7m1 0h1m1 0h1m2 0h1m7 0h1m1 0h2m1 0h1m1 0h1m2 0h1"/></svg><span>詳細・<br>ダウンロード</span></div>
+  </div>
+</div>
+<div class="feat">
+  <div class="feat-shots"><img src="../assets/apps/kattalyst/shot-1.webp" alt=""><img src="../assets/apps/kattalyst/shot-2.webp" alt=""></div>
+  <div class="feat-body">
+    <div class="feat-head"><img class="ficon" src="../assets/apps/kattalyst/icon.webp" alt="">
+      <div><p class="name">Kattalyst</p><p class="pfs"><span class="pf">Android</span><span class="pf">iOS</span></p></div></div>
+    <p class="tag">いつものまとめ買いを、直感操作の買い物リストで</p>
+    <div class="feat-qr"><svg class="qr" preserveAspectRatio="xMidYMid meet" viewBox="0 0 37 37" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"/><path class="qrline" stroke="#0d1222" d="M2 2.5h7m1 0h2m2 0h1m2 0h2m1 0h2m1 0h3m2 0h7m-33 1h1m5 0h1m1 0h2m3 0h1m1 0h5m3 0h1m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h1m2 0h2m6 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m5 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h2m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h2m2 0h2m3 0h4m1 0h2m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m1 0h1m1 0h4m1 0h2m2 0h2m1 0h1m-24 1h2m1 0h1m1 0h2m1 0h2m3 0h1m2 0h1m2 0h2m1 0h1m2 0h1m1 0h5m-33 1h2m2 0h1m3 0h2m2 0h5m4 0h2m1 0h4m4 0h1m-31 1h3m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h1m1 0h1m2 0h3m-30 1h2m3 0h1m2 0h1m2 0h1m2 0h2m1 0h4m2 0h1m1 0h1m2 0h1m-31 1h3m1 0h4m4 0h2m1 0h1m1 0h1m2 0h1m1 0h4m2 0h1m-30 1h1m2 0h2m3 0h2m5 0h1m4 0h3m2 0h3m4 0h1m-32 1h1m3 0h2m1 0h4m1 0h1m2 0h2m3 0h2m2 0h1m1 0h1m1 0h4m-30 1h1m1 0h1m2 0h1m1 0h2m1 0h1m5 0h1m1 0h1m4 0h1m1 0h1m2 0h1m-32 1h2m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m2 0h3m-26 1h1m1 0h1m4 0h1m2 0h2m4 0h2m1 0h2m2 0h1m1 0h2m3 0h2m-33 1h2m1 0h2m1 0h1m2 0h1m2 0h1m1 0h4m6 0h1m1 0h1m3 0h3m-31 1h1m1 0h1m2 0h2m1 0h1m3 0h2m2 0h4m5 0h2m2 0h1m-32 1h2m4 0h2m1 0h5m2 0h2m3 0h1m3 0h2m2 0h1m1 0h2m-32 1h1m1 0h1m1 0h1m3 0h2m4 0h1m1 0h1m2 0h3m1 0h1m1 0h1m2 0h1m1 0h2m-33 1h1m1 0h1m2 0h2m6 0h1m1 0h1m4 0h1m1 0h1m1 0h5m2 0h2m-32 1h1m5 0h2m1 0h2m1 0h1m4 0h6m1 0h1m1 0h3m1 0h2m-33 1h1m1 0h2m1 0h2m1 0h1m1 0h1m3 0h2m1 0h1m1 0h4m1 0h5m2 0h1m-24 1h1m3 0h1m3 0h1m3 0h2m2 0h1m3 0h2m2 0h1m-33 1h7m1 0h2m2 0h1m1 0h1m1 0h1m3 0h1m2 0h2m1 0h1m1 0h1m1 0h3m-33 1h1m5 0h1m7 0h1m2 0h5m2 0h1m3 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h3m2 0h1m3 0h2m2 0h6m-30 1h1m1 0h3m1 0h1m3 0h1m3 0h1m1 0h3m1 0h1m7 0h1m1 0h3m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m10 0h1m3 0h1m-33 1h1m5 0h1m1 0h2m1 0h1m2 0h2m1 0h3m1 0h2m1 0h2m2 0h1m2 0h1m-32 1h7m2 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m2 0h2"/></svg><span>詳細・<br>ダウンロード</span></div>
+  </div>
+</div>
+    </div>
+    <p class="foot">掲載内容は 2026年10月 時点のものです。</p>
+  </div>
+  <span class="fold" style="left:100mm"></span><span class="fold" style="left:200mm"></span>
+</section>
+
+</body>
+</html>
