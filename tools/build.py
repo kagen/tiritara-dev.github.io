@@ -261,7 +261,8 @@ def build_index(projects, store):
     }});
   }});
 }})();
-</script>"""
+</script>
+<script src="assets/hero-fly.js" defer></script>"""
     html = page(
         title="tiritara.dev — Android・iOS アプリと Web サービスの個人開発",
         description="tiritara.dev が開発する Android・iOS アプリと Web サービスの紹介。DaZen、電車GPS目覚まし、Kattalyst、RosaNauts、和風六曜暦カレンダー、絵馬掛け、QR勤怠など。",
