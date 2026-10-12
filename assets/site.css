@@ -203,12 +203,15 @@ img { display: block; max-width: 100%; height: auto; }
 .hero-stats span { font-size: 13px; color: var(--muted); }
 
 /* ---------- 浮遊アイコン（assets/hero-fly.js） ---------- */
-body.fly-on .hero {
+body.fly-side .hero {
     min-height: min(calc(100vh - 64px), 900px);
     display: flex;
     align-items: center;
 }
 body.fly-on .hero .wrap { position: relative; z-index: 6; }
+/* スマホ：ロゴのまわりにアイコンの雲を浮かべる余白をとる */
+body.fly-cloud .hero { padding-top: 140px; }
+body.fly-cloud .hero-logo { margin-bottom: 140px; }
 .flyers {
     position: absolute;
     top: 0;
