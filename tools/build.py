@@ -20,11 +20,23 @@ IOS_DEV = "https://apps.apple.com/jp/developer/id6800308304"
 PRIVACY_ANDROID = "https://kagen.github.io/tiritara-privacy/"
 PRIVACY_IOS = "https://kagen.github.io/tiritara-privacy/ios.html"
 GITHUB = "https://github.com/kagen"
+GA_ID = "G-RM99KGWLQQ"  # Google アナリティクス（tiritara.dev プロパティ）
 
 
 def asset_version(path):
     """CSS・JS の URL に付けるバージョン。内容が変わると変わるので、古いキャッシュが使われない。"""
     return hashlib.sha256((ROOT / path).read_bytes()).hexdigest()[:8]
+
+# Google の案内どおり、各ページの <head> の直後に置く
+GA_TAG = f"""<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+
+  gtag('config', '{GA_ID}');
+</script>"""
 
 FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
@@ -63,6 +75,7 @@ def page(*, title, description, prefix, body, canonical, og_image=None, extra_he
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
+{GA_TAG}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark light">
